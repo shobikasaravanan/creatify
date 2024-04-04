@@ -69,14 +69,11 @@ export async function POST(req: Request) {
       lastName: last_name,
       photo: image_url,
     };
-    console.log("inside api webhook before", user)
 
     const newUser = await createUser(user);
-    console.log("inside api webhook after", newUser)
 
     // Set public metadata
     if (newUser) {
-      console.log("inside clerk whre all db and clerk connected")
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
